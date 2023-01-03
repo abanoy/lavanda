@@ -4,6 +4,9 @@
 const TITLE = "Lavander"
 const EDITION = "Dev"
 const BRANCH = "Master"
+const INITAL_WIDTH = window.innerWidth
+const INITAL_HEIGHT = window.innerHeight
+
 
 // Modes -
 //	0: Menu

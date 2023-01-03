@@ -116,6 +116,9 @@ function getPremadeContainer(intSelection) {
 
 			setTimeout(function() {setBlink();}, 4000);
 			setInterval(function(){getBackgroundUpdate(arrVariables, arrTexts)}, 7500);
+
+			setCenter(imgTenant)
+
 			break;
 		case 1: // Login
 			setElement(document.body, 'div', 'cntLogin', '', '', 'container', false, false);
@@ -161,4 +164,43 @@ function getPixelsFromViewpoint(numViewpoint, numInnerScreenSize) {
 
 function getViewpointFromPixels(numPixels, numInnerScreenSize) {
 	return (100 * numPixels) / numInnerScreenSize
+}
+
+function setCenter(objElement) {
+	let dblWidth = objElement.width
+	let dblHeight = objElement.height
+	let dblScale = setScale(objElement)
+	let dblCenterX = getViewpointFromPixels((window.innerWidth - dblWidth)/2, window.innerWidth)
+	let dblCenterY = getViewpointFromPixels((window.innerHeight - dblHeight)/2, window.innerHeight)
+
+	objElement.style.transform = setTransform(dblCenterX, "vw", dblCenterY, "vh", dblScale)
+}
+
+function setScale(objElement) {
+	return window.innerHeight / INITAL_HEIGHT
+}
+
+function setTransform(dblX, strXBy, dblY, strYBy, dblScale) {
+	return "translate(" + dblX + strXBy + "," + dblY + strYBy + ") scale(" + dblScale +")"
+}
+
+function getTransformInformation(objElement, strCode) {
+	objReference = getComputedStyle(objElement)
+	arrNumbers = objReference.transform.substring(7, objReference.transform.length-1).split(",")
+
+	if (strCode == "transformX") {
+		return arrNumbers[4]
+	} else if (strCode = "transformY") {
+		return arrNumbers[3]
+	} else if (strCode = "scale") {
+		return arrNumbers[0]
+	} else if (strCode == "transformXViewportHeight") {
+		return getViewpointFromPixels(arrNumbers[4], window.innerHeight)
+	} else if (strCode == "transformXViewportWidth") {
+		return getViewpointFromPixels(arrNumbers[4], window.innerWidth)
+	} else if (strCode == "transformYViewportHeight") {
+		return getViewpointFromPixels(arrNumbers[3], window.innerHeight)
+	} else if (strCode == "transformYViewportWidth") {
+		return getViewpointFromPixels(arrNumbers[3], window.innerWidth)
+	}
 }

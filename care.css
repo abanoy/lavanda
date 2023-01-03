@@ -108,9 +108,6 @@
 }
 
 #imgTenant {
-	left: 0;
-	right: 0;
-	transform: translate(0px, 510px);
 	z-index:-1;
 }
 

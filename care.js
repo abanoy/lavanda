@@ -487,8 +487,15 @@ function setCountdown(intSeconds){
 	}, 1000);
 } // End of setCountdown function
 
+function setUpdate() {
+	setCenter(imgTenant)
+}
+
 function startCare() {
 	intMode = 1;
 	getPremadeContainer(0);
 	setFade(true);
+
+	    // On each milisecond, check for updates
+		setInterval(function () { setUpdate()}, 0);
 }
