@@ -19,6 +19,9 @@ window.addEventListener('load', function () {
                     setTimeout(function() {setFade(false);}, 3000)
                     setTimeout(function() {startCare();}, 3500);
                 }
+            } else {
+                setCookies();
+                startCare();
             }
 
         } else if (this.location.hostname != '') {   // If the hostname is not localhost
