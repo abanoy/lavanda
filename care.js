@@ -427,9 +427,7 @@ function setCanvas(arrVariables, arrTexts, intCode, intCodeSecondary, blnRemoveS
 		default: // Update the status display
 			if (blnDeath){setDeath();}
 			else {
-				lblEnergy.firstChild.nodeValue = 'ENERGY: ' + arrVariables[0] + '/' + arrVariables[3];
-				lblHunger.firstChild.nodeValue = 'HUNGER: ' + arrVariables[1] + '/' + arrVariables[4];
-				lblSocial.firstChild.nodeValue = 'SOCIAL: ' + arrVariables[2] + '/' + arrVariables[5];
+				// LEAVE THIS BLANK FOR NOW
 			} // End if
 	} // End Switch
 } // End of setCanvas function
@@ -488,7 +486,13 @@ function setCountdown(intSeconds){
 } // End of setCountdown function
 
 function setUpdate() {
-	setCenter(imgTenant)
+
+	if (window.innerWidth > window.innerHeight)
+	{
+		setCenterOffset(imgTenant, 0.1, 0.15)
+	} else {
+		setCenterOffset(imgTenant, 0.25, 0.15)
+	}
 }
 
 function startCare() {

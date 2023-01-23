@@ -91,33 +91,39 @@ function addCookies(strName, strValue) {
 	objCookies[strName] = strValue;
 }
 
+function setButton(cntParent, strButtonName, strButtonText) {
+	tmpElement = setElement(cntParent, 'div', strButtonName, '', '', 'buttonDiv', false, false);
+	setElement(tmpElement, 'label', strButtonName+"Label", '', strButtonText, 'buttonLabel', true, false);
+}
+
 function getPremadeContainer(intSelection) {
 	switch (intSelection) {
 		case 0: // Main
 			setElement(document.body, 'img', 'imgTenant', 'image/png', 'img/char/tenant/normal.png', 'image', false, true);
-			setElement(document.body, 'div', 'cntCommand', '', '', 'container', false, false);
-			setElement(cntCommand, 'div', 'cntStatus', '', '', 'container', false, false);
-			setElement(cntCommand, 'div', 'cntButtonsMain', '', '', 'container', false, false);
+			setElement(document.body, 'div', 'cntGeneralInformationMainBackframe', '', '', 'container', false, false);
+			setElement(cntGeneralInformationMainBackframe, 'div', 'cntGeneralInformationMain', '', '', 'container', false, false);
+			setElement(document.body, 'div', 'cntButtonsMainBackframe', '', '', 'container', false, false);
+			setElement(cntButtonsMainBackframe, 'div', 'cntButtonsMain', '', '', 'container', false, false);
 
-			setElement(cntStatus, 'label', 'lblEnergy', '', 'Energy: ' + arrVariables[0] + '/' + arrVariables[3], 'label', true, false);
-			setElement(cntStatus, 'label', 'lblHunger', '', 'Hunger: ' + arrVariables[1] + '/' + arrVariables[4], 'label', true, false);
-			setElement(cntStatus, 'label', 'lblSocial', '', 'Social: ' + arrVariables[2] + '/' + arrVariables[5], 'label', true, false);
-			setElement(cntButtonsMain, 'input', 'btnSleep', 'button', 'Sleep', 'button', false, false);
-			setElement(cntButtonsMain, 'input', 'btnEat', 'button', 'Eat', 'button', false, false);
-			setElement(cntButtonsMain, 'input', 'btnTalk', 'button', 'Talk', 'button', false, false);
-			setElement(cntButtonsMain, 'input', 'btnLeave', 'button', 'Leave', 'button', false, false);
+			setElement(cntGeneralInformationMain, 'label', 'lblDayName', '', 'Wednesday', 'label', true, false);
+			setElement(cntGeneralInformationMain, 'label', 'lblDate', '', 'September 31', 'label', true, false);
+			setElement(cntGeneralInformationMain, 'label', 'lblDaysLeft', '', 'Day 001/999', 'label', true, false);
 
-			btnLeave.style.marginRight = '0px';
 
-			btnEat.onclick = function() {setButtonFunctionality(arrVariables, arrTexts, [0, -10, 1, 20], 0, true);};
-			btnSleep.onclick = function() {setButtonFunctionality(arrVariables, arrTexts, [0, 20, 1, -10], 1, true);};
+			setButton(cntButtonsMain, 'btnSchedule', 'Schedule');
+			setButton(cntButtonsMain, 'btnTalk', 'Talk');
+			setButton(cntButtonsMain, 'btnStatistics', 'Statistics');
+			setButton(cntButtonsMain, 'btnExit', 'Exit');
+
+			btnSchedule.onclick = function() {setButtonFunctionality(arrVariables, arrTexts, [0, -10, 1, 20], 0, true);};
 			btnTalk.onclick = function() {setButtonFunctionality(arrVariables, arrTexts, [0, -10, 2, 20], 2, true);};
-			btnLeave.onclick = function() {setButtonFunctionality(arrVariables, arrTexts, [0, -10, 2, 20], 3, false);};
+			btnStatistics.onclick = function() {setButtonFunctionality(arrVariables, arrTexts, [0, 20, 1, -10], 1, true);};
+			btnExit.onclick = function() {setButtonFunctionality(arrVariables, arrTexts, [0, -10, 2, 20], 3, false);};
 
 			setTimeout(function() {setBlink();}, 4000);
 			setInterval(function(){getBackgroundUpdate(arrVariables, arrTexts)}, 7500);
 
-			setCenter(imgTenant)
+			//setCenter(imgTenant)
 
 			break;
 		case 1: // Login
@@ -174,6 +180,30 @@ function setCenter(objElement) {
 	let dblCenterY = getViewpointFromPixels((window.innerHeight - dblHeight)/2, window.innerHeight)
 
 	objElement.style.transform = setTransform(dblCenterX, "vw", dblCenterY, "vh", dblScale)
+}
+
+function setPosition(objElement, vwX, vhY) {
+	let dblWidth = objElement.width
+	let dblHeight = objElement.height
+	let dblScale = setScale(objElement)
+
+	objElement.style.transform = setTransform(vwX, "vw", vhY, "vh", dblScale)
+}
+
+function setCenterOffset(objElement, pcXOffset, pcYOffset) {
+	let dblWidth = objElement.width
+	let dblHeight = objElement.height
+	let dblScale = setScale(objElement)
+	let dblCenterOffsetX = getViewpointFromPixels((window.innerWidth - dblWidth)/2, window.innerWidth)
+	let dblCenterOffsetY = getViewpointFromPixels((window.innerHeight - dblHeight)/2, window.innerHeight)
+
+	let vwXOffset = getViewpointFromPixels(pcXOffset * window.innerWidth, window.innerWidth)
+	let vhYOffset = getViewpointFromPixels(pcYOffset * window.innerHeight, window.innerHeight)
+
+	dblCenterOffsetX += vwXOffset;
+	dblCenterOffsetY += vhYOffset;
+
+	objElement.style.transform = setTransform(dblCenterOffsetX, "vw", dblCenterOffsetY, "vh", dblScale)
 }
 
 function setScale(objElement) {

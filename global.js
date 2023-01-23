@@ -4,8 +4,9 @@
 const TITLE = "Lavander"
 const EDITION = "Dev"
 const BRANCH = "Master"
-const INITAL_WIDTH = window.innerWidth
-const INITAL_HEIGHT = window.innerHeight
+const INITAL_SCALE = 0.8
+const INITAL_WIDTH = 1920 * INITAL_SCALE
+const INITAL_HEIGHT = 1080 * INITAL_SCALE
 
 
 // Modes -
