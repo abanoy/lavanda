@@ -5,7 +5,7 @@ window.addEventListener('load', function () {
 
         // If the location is on the specified domain
         // Else if the location is not localhost
-        if (this.location.hostname == 'abanoy.github.io') {   // <--- This is where the website domain will be entered
+        if (this.location.hostname == '') {   // <--- This is where the website domain will be entered (Empty it for Non-cookie development)
             setFade(true);
             getPremadeContainer();
 
