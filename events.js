@@ -5,18 +5,22 @@ window.addEventListener('load', function () {
 
         // If the location is on the specified domain
         // Else if the location is not localhost
-        if (this.location.hostname == '') {   // <--- This is where the website domain will be entered (Empty it for Non-cookie development)
-            setFade(true);
-            getPremadeContainer();
+        if (this.location.hostname == 'abanoy.github.io') {   // <--- This is where the website domain will be entered
 
-            btnOK.onclick = function() {
-                audFirstClick.play();
+            if (1 == 0) { // (Empty it for Non-cookie development)
+                setFade(true);
+                getPremadeContainer();
 
-                setCookies();
+                btnOK.onclick = function() {
+                    audFirstClick.play();
 
-                setTimeout(function() {setFade(false);}, 3000)
-                setTimeout(function() {startCare();}, 3500);
+                    setCookies();
+
+                    setTimeout(function() {setFade(false);}, 3000)
+                    setTimeout(function() {startCare();}, 3500);
+                }
             }
+
         } else if (this.location.hostname != '') {   // If the hostname is not localhost
             alert('Unrecognized host.');
         } else { // Presuming it is localhost
