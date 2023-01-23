@@ -32,8 +32,8 @@
 @media (orientation: portrait) {
 	#cntGeneralInformationMainBackframe{
 		display: flex;
-		width: 58%;
-		height: 16%;
+		width: 60%;
+		height: 17%;
 		justify-content: right;
 		align-items: flex-end;
 	}
